@@ -24,12 +24,9 @@ String imc() {
   return '';
 }
 
-int fibonacci() {
-  int fi(int n) => n <= 2 ? 1 : fi(n - 2) + fi(n - 1);
-  String output = "";
-  for (int i = 1; i <= 10; ++i) {
-    output += "${fi(i)}, ";
+int fibonacci(int n) {
+  if (n == 0 || n == 1) {
+    return n;
   }
-  print(output);
-  return 0;
+  return (fibonacci(n - 1) + fibonacci(n - 2));
 }
