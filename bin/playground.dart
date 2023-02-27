@@ -11,7 +11,10 @@ void main(List<String> arguments) {
   if (input == 1) {
     return print({playground.imc()});
   } else if (input == 2) {
-    return print({playground.fibonacci()});
+    print('------- FIBONACCI -------');
+    print('Digite o valor de n:');
+    var n = int.parse(stdin.readLineSync()!);
+    return print({playground.fibonacci(n)});
   } else {
     return print('OPÇÃO INVÁLIDA!');
   }
