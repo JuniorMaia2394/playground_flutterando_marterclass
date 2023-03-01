@@ -31,7 +31,14 @@ int fibonacci(int n) {
   return (fibonacci(n - 1) + fibonacci(n - 2));
 }
 
-void regraDe3(double A, double B, double C) {
+void regraDe3() {
+  print('----- REGRA DE 3 -----');
+  print('Digite o valor de A:');
+  double A = double.parse(stdin.readLineSync()!);
+  print('Digite o valor de B:');
+  double B = double.parse(stdin.readLineSync()!);
+  print('Digite o valor de C:');
+  double C = double.parse(stdin.readLineSync()!);
   print('VALOR DE A: $A');
   print('VALOR DE A: $B');
   print('VALOR DE A: $C');
