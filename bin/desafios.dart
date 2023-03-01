@@ -31,7 +31,7 @@ int fibonacci(int n) {
   return (fibonacci(n - 1) + fibonacci(n - 2));
 }
 
-double regraDe3(double A, double B, double C) {
+void regraDe3(double A, double B, double C) {
   print('VALOR DE A: $A');
   print('VALOR DE A: $B');
   print('VALOR DE A: $C');
@@ -44,5 +44,4 @@ double regraDe3(double A, double B, double C) {
   print('x = $resultBC/$A');
   double resultABCX = (B * C) / A;
   print('X = ${resultABCX.toStringAsFixed(2)}');
-  return 0;
 }
