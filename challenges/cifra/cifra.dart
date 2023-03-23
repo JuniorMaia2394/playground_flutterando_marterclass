@@ -1,8 +1,8 @@
 import 'dart:math';
 
 main() {
-  final cifra = Cifra(text: 'BATATA');
-  print(cifra.verificarCifra());
+  final cifra = Cifra(text: 'BAo&#');
+  cifra.vigenere();
 }
 
 class Cifra {
@@ -10,76 +10,71 @@ class Cifra {
   Cifra({
     required this.text,
   });
-  //variaveis
-  String textKey = '';
-  int somaCharText = 0;
-  int somaCharKey = 0;
-  int somaTotal = 0;
-  int somaCharA = 0;
-  double divChar = 0.0;
-  double restChar = 0.0;
+  final regex = RegExp(r'[A-Z]');
+  List<int> keys = [];
+  List<String> somaTextKey = [];
+  List<String> divTextKey = [];
+  List<String> subTextKey = [];
+  List<String> convertSubTextKey = [];
 
-//função que faz o random das letras da palavra digitada
-//tenho como parametro o tamanho da string, e o texto que vai ser randomizado
-  String randomString(int lengthString, String textRandom) {
-    final random = Random(); //instacio a classe Random()
-
-    //Uso o List.generate para randomizar as posições das letras com tamanho da string
-    final randomString = List.generate(lengthString,
-        (index) => textRandom[random.nextInt(textRandom.length)]).join();
-
-    //atribuo o valor da randomString ao textKey
-    return textKey = randomString;
+//key
+//Para executar o encode e decode é necessário ter uma chave que tenha valores randômicos mas que tenha a mesma quantidade de caracteres do texto a ser criptografado
+//gera valores aleatórios entre 65 a 90(A-Z) tabela ASCII
+  void key(int textLength) {
+    var random = Random();
+    for (var i = 0; i < textLength; i++) {
+      int randomKey = random.nextInt(26) + 65;
+      keys.add(randomKey);
+    }
+    print('Keys: $keys');
   }
 
-//função para verificar a cifra
-  String verificarCifra() {
-    //instancio a classe Regex com a seguinte validação, so letras maiuscula de A a Z
-    final regex = RegExp(r'^[A-Z]+$');
-
-    //se o texto digitado for de acordo com a validação ele entra nesse if
-    if (regex.hasMatch(text)) {
-      //chamo a função para setar os valores, para as variaveis
-      randomString(text.length, text);
-
-      //soma do charCode de cada letra da palavra digiada
-      for (var i = 0; i < text.length; i++) {
-        somaCharText += text[i].codeUnitAt(0);
+//Encode
+//Passo 1: Receba a o texto a ser criptografado e a chave em questão.
+  void encode(String text, List<int> keys) {
+//Passo 2: deve-se somar o charCode de cada letra do texto e da key em suas respectivas posições e dividir por 26. O RESTO dessa divisão deve ser somado com o CharCode da letra A.
+    for (var i = 0; i < text.length; i++) {
+      if (regex.hasMatch(text[i]) == true) {
+        int soma = text[i].codeUnitAt(0) + keys[i];
+        somaTextKey.add(soma.toString());
+        int div = (int.parse(somaTextKey[i]) % 26) + 65;
+//O resultado da soma anterior é o novo char.
+        divTextKey.add(div.toString());
+      } else {
+//Lembre-se: Valores não alfabetos não devem ser transformados.
+        somaTextKey.add(text[i]);
+        divTextKey.add(text[i]);
       }
-
-//soma do charCode de cada letra da key
-      for (var i = 0; i < textKey.length; i++) {
-        somaCharKey += textKey[i].codeUnitAt(0);
-      }
-      //soma do charCode de cada letra do texto e da key em suas respectivas posições
-      somaTotal = somaCharKey + somaCharText;
-      // dividir por 26
-      divChar = somaTotal / 26;
-      //resto da divisão
-      restChar = somaTotal % 26;
-      // somando o resto da divisão com o charCode da letra A(65)
-      somaCharA = 65 + restChar.toInt();
-
-      //se o somaCharA for uma String entra nesse if e printa o novo charCode
-      if (RegExp(r'[a-zA-Z]').hasMatch(String.fromCharCode(somaCharA))) {
-        print('Novo charCode: ${String.fromCharCode(somaCharA)}');
-      }
-      //caso seja um digito entra nesse else
-      else {
-        print('Valor não alfabeto');
-      }
-
-      // print('Soma do resto: $somaCharA');
-      // print('Resto: ${restChar.toInt()}');
-      // print('Divisão: ${divChar.toInt()}');
-      // print('Soma total: $somaTotal');
-      // print('Soma code text: $somaCharText');
-      // print('Soma code key: $somaCharKey');
     }
-    //se nao, entra nesse else
-    else {
-      print('incorreto!');
+    print('Encode: $divTextKey');
+  }
+
+//decode
+//Passo 1: Receba a o texto criptografado e a chave.
+  void decode(List<String> divTextKey, List<int> keys) {
+//Passo 2: deve-se subtrair o charCode de cada letra do texto e da key em suas respectivas posições somando o resultado com 26.
+    for (var i = 0; i < divTextKey.length; i++) {
+      var convert = int.tryParse(divTextKey[i]);
+      if (convert != null) {
+        int sub = ((convert - keys[i]) + 26);
+        subTextKey.add(sub.toString());
+//O resultado deve ser dividido por 26. O RESTO dessa divisão deve ser somado com o CharCode da letra A.
+        int div = ((int.parse(subTextKey[i]) % 26) + 65);
+//Passo 3: O resultado da soma anterior é o  char descriptografado.
+        convertSubTextKey.add(String.fromCharCode(div));
+      } else {
+        subTextKey.add(divTextKey[i].toString());
+//Lembre-se: Valores não alfabetos não devem ser transformados.
+        convertSubTextKey.add(divTextKey[i].toString());
+      }
     }
-    return '';
+    print('Decode: $convertSubTextKey');
+  }
+
+  void vigenere() {
+    print('Texto: $text');
+    key(text.length);
+    encode(text, keys);
+    decode(divTextKey, keys);
   }
 }
