@@ -1,7 +1,7 @@
 import 'dart:math';
 
 main() {
-  final cifra = Cifra(text: 'BAo&#');
+  final cifra = Cifra(text: 'BAO&#');
   cifra.vigenere();
 }
 
