@@ -6,14 +6,17 @@ class TextBottomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-      text: const TextSpan(text: 'Already have an account? ', children: [
-        TextSpan(
-          text: 'Sign In',
-          style: TextStyle(
-            decoration: TextDecoration.underline,
+      text: const TextSpan(
+        text: 'Already have an account? ',
+        children: [
+          TextSpan(
+            text: 'Sign In',
+            style: TextStyle(
+              decoration: TextDecoration.underline,
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }

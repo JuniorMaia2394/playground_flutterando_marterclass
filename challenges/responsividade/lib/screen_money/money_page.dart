@@ -15,8 +15,8 @@ class MoneyPage extends StatefulWidget {
 class _MoneyPageState extends State<MoneyPage> {
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context).size;
-    print(mediaQuery);
+    // final mediaQuery = MediaQuery.of(context).size;
+
     //quebra em 449.0, 689.0
     return Scaffold(
       backgroundColor: Colors.black,
