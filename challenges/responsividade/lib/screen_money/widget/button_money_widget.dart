@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ButtonWidget extends StatefulWidget {
-  const ButtonWidget({super.key});
+class ButtonWidgetMoney extends StatefulWidget {
+  const ButtonWidgetMoney({super.key});
 
   @override
-  State<ButtonWidget> createState() => _ButtonWidgetState();
+  State<ButtonWidgetMoney> createState() => _ButtonWidgetMoneyState();
 }
 
-class _ButtonWidgetState extends State<ButtonWidget> {
+class _ButtonWidgetMoneyState extends State<ButtonWidgetMoney> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;

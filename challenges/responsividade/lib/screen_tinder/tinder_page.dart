@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:responsividade/screen_tinder/widget/button_apple.dart';
-import 'package:responsividade/screen_tinder/widget/button_facebook.dart';
-import 'package:responsividade/screen_tinder/widget/button_number.dart';
+import 'package:responsividade/screen_tinder/widget/button_widget.dart';
 import 'package:responsividade/screen_tinder/widget/text_signing.dart';
 import 'package:responsividade/screen_tinder/widget/text_terms.dart';
 
@@ -22,8 +20,8 @@ class _TinderPageState extends State<TinderPage> {
         width: media.width,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.centerRight,
-            end: Alignment.centerLeft,
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
             stops: [
               0.1,
               0.9,
@@ -44,11 +42,14 @@ class _TinderPageState extends State<TinderPage> {
               const SizedBox(
                 height: 15,
               ),
-              const Align(
+              Align(
                 alignment: Alignment.topLeft,
-                child: Icon(
-                  Icons.keyboard_arrow_left_rounded,
-                  color: Colors.white,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: const Icon(
+                    Icons.keyboard_arrow_left_rounded,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               Padding(
@@ -70,20 +71,29 @@ class _TinderPageState extends State<TinderPage> {
                   horizontal: 20,
                 ),
                 child: Column(
-                  children: const [
-                    ButtonApple(),
-                    SizedBox(
+                  children: [
+                    ButtonWidget(
+                      text: 'SIGN IN WITH APPLE',
+                      icon: 'assets/apple_logo.png',
+                    ),
+                    const SizedBox(
                       height: 10,
                     ),
-                    ButtonFacebook(),
-                    SizedBox(
+                    ButtonWidget(
+                      text: 'SIGN IN WITH FACEBOOK',
+                      icon: 'assets/facebook_logo.png',
+                    ),
+                    const SizedBox(
                       height: 10,
                     ),
-                    ButtonNumber(),
-                    SizedBox(
+                    ButtonWidget(
+                      text: 'SIGN IN WITH PHONE NUMBER',
+                      icon: 'assets/ballon.png',
+                    ),
+                    const SizedBox(
                       height: 30,
                     ),
-                    TextSigin(),
+                    const TextSigin(),
                   ],
                 ),
               )

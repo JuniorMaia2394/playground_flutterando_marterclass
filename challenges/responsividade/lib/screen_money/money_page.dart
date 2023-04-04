@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsividade/screen_money/widget/button_google.dart';
-import 'package:responsividade/screen_money/widget/button_widget.dart';
+import 'package:responsividade/screen_money/widget/button_money_widget.dart';
 import 'package:responsividade/screen_money/widget/symbol_widget.dart';
 import 'package:responsividade/screen_money/widget/text_bottom_widget.dart';
 import 'package:responsividade/screen_money/widget/text_widget.dart';
@@ -23,28 +23,41 @@ class _MoneyPageState extends State<MoneyPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
-          vertical: 50,
+          vertical: 20,
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            SymbolWidget(),
-            SizedBox(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: const Icon(
+                  Icons.keyboard_arrow_left_rounded,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 200,
+            ),
+            const SymbolWidget(),
+            const SizedBox(
               height: 40,
             ),
-            TextWidget(),
-            SizedBox(
+            const TextWidget(),
+            const SizedBox(
               height: 100,
             ),
-            ButtonWidget(),
-            SizedBox(
+            const ButtonWidgetMoney(),
+            const SizedBox(
               height: 12,
             ),
-            ButtonGoogle(),
-            SizedBox(
+            const ButtonGoogle(),
+            const SizedBox(
               height: 20,
             ),
-            TextBottomWidget(),
+            const TextBottomWidget(),
           ],
         ),
       ),
