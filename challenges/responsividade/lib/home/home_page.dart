@@ -18,8 +18,15 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         height: mediaQuery.height,
         width: mediaQuery.width,
-        decoration: const BoxDecoration(
-          color: Colors.cyan,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.blue.shade200,
+              Colors.blue.shade900,
+            ],
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -28,9 +35,8 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
-                Icons.flutter_dash,
-                size: 100,
+              Image.asset(
+                'assets/flutter_logo.png',
               ),
               const SizedBox(
                 height: 50,

@@ -10,11 +10,9 @@ class ButtonWidgetMoney extends StatefulWidget {
 class _ButtonWidgetMoneyState extends State<ButtonWidgetMoney> {
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context).size;
-
     return Container(
       height: 50,
-      width: mediaQuery.width,
+      width: 641,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: Colors.deepPurple,

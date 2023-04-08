@@ -17,6 +17,7 @@ class ButtonWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 40,
+        width: 641,
         decoration: BoxDecoration(
           border: Border.all(
             width: 2,

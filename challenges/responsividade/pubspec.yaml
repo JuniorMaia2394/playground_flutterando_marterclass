@@ -67,6 +67,7 @@ flutter:
     - assets/ballon.png
     - assets/tinder_logo.png
     - assets/money_logo.png
+    - assets/flutter_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

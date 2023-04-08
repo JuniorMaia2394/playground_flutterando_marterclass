@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:responsividade/screen_tinder/widget/button_widget.dart';
 import 'package:responsividade/screen_tinder/widget/text_signing.dart';
@@ -14,6 +16,7 @@ class _TinderPageState extends State<TinderPage> {
   @override
   Widget build(BuildContext context) {
     final media = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Container(
         height: media.height,
@@ -56,10 +59,11 @@ class _TinderPageState extends State<TinderPage> {
                 padding: const EdgeInsets.only(
                   left: 80,
                   right: 80,
-                  top: 300,
+                  top: 150,
                 ),
                 child: Image.asset(
                   'assets/logo_tinder.png',
+                  width: 500,
                 ),
               ),
               const TextTerms(),
